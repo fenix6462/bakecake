@@ -30,8 +30,11 @@
             .when("/products/:id", {
                 templateUrl: "app/Products/Details"
             })
+            .when("/error404", {
+                templateUrl: "app/Home/Error404"
+            })
             .otherwise({
-                redirectTo: '/recipes'
+                redirectTo: '/'
             });
 
     }]);

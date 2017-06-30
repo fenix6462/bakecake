@@ -12,13 +12,5 @@ namespace BakeCake.Controllers
         {
             return View();
         }
-        public ActionResult Recipes()
-        {
-            return PartialView();
-        }
-        public ActionResult Products()
-        {
-            return PartialView();
-        }
     }
 }
