@@ -12,6 +12,10 @@ namespace BakeCake.Models
         public string Description { get; set; }
 
         public ICollection<Product> RecipeProducts { get; set; }
+        
+        public Recipe(){
+            RecipeProducts = new List<Product>();
+        }
 
     }
 }
