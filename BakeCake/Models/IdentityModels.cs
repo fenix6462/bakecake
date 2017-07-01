@@ -20,6 +20,9 @@ namespace BakeCake.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<RecipeProducts> RecipeProducts { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

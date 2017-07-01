@@ -1,7 +1,15 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
+﻿<div class="row">
+    <div class="col-md-12">
+        <h1>Przepisy</h1>
+        <table class="table hover">
+            <tr>
+                <th>Nazwa</th>
+                <th>Opis</th>
+            </tr>
+            <tr ng-repeat="recipe in recipes">
+                <td>{{ recipe.Name }}</td>
+                <td>{{ recipe.Description }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

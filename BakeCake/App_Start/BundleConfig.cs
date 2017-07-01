@@ -11,7 +11,8 @@ namespace BakeCake
             bundles.Add(new ScriptBundle("~/Content/js").Include(
                       "~/Content/js/jquery.min.js",
                       "~/Content/js/bootstrap.min.js",
-                      "~/Scripts/js/custom.js"));
+                      "~/Scripts/js/custom.js"
+                      ));
 
             bundles.Add(new ScriptBundle("~/Content/angular").Include(
                       "~/Content/js/angular.min.js",
@@ -21,7 +22,9 @@ namespace BakeCake
                       "~/Content/ng/router.js",
                       "~/Content/ng/controllers/*.js",
                       "~/Content/ng/directives/*.js",
-                      "~/Content/ng/filters/*.js"));
+                      "~/Content/ng/filters/*.js",
+                      "~/Content/js/custom.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",

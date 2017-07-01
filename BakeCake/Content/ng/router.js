@@ -10,22 +10,27 @@
 
         $routeProvider
             .when("/", {
-                templateUrl: "app/Recipes/Index"
+                templateUrl: "app/Recipes/Index",
+                controller: "RecipesController"
             })
             .when("/recipes", {
-                templateUrl: "app/Recipes/Index"
+                templateUrl: "app/Recipes/Index",
+                controller: "RecipesController"
             })
             .when("/recipes/create", {
-                templateUrl: "app/Recipes/Create"
+                templateUrl: "app/Recipes/Create",
+                controller: "CreateRecipeController"
             })
             .when("/recipes/:id", {
-                templateUrl: "app/Recipes/Details"
+                templateUrl: "app/Recipes/Details",
             })
             .when("/products", {
-                templateUrl: "app/Products/Index"
+                templateUrl: "app/Products/Index",
+                controller: "ProductsController"
             })
             .when("/products/create", {
-                templateUrl: "app/Products/Create"
+                templateUrl: "app/Products/Create",
+                controller: "CreateProductController"
             })
             .when("/products/:id", {
                 templateUrl: "app/Products/Details"

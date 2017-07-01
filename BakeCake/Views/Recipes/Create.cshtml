@@ -1,7 +1,37 @@
-﻿
-@{
-    ViewBag.Title = "Create";
-}
-
-<h2>Create</h2>
-
+﻿<div class="row">
+    <div class="col-md-12">
+        Dodaj przepis
+    </div>
+    <div class="col-md-6">
+        <form name="createRecipeForm" ng-submit="createRecipe()">
+            <div class="form-group">
+                <label for="name">Podaj nazwę przepisu</label>
+                <input type="text" class="form-control" ng-model="recipe.Name" name="name" id="name" placeholder="Podaj nazwę przepisu" />
+            </div>
+            <div class="form-group">
+                <label for="name">Opis przepisu</label>
+                <input type="text" class="form-control" ng-model="recipe.Description" name="description" id="description" placeholder="Opis przepisu" />
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <select class="form-control" ng-model="newProduct.Id">
+                        <option value="">Wybierz produkt</option>
+                        <option ng-repeat="product in products" value="{{ product.Id }}">{{ product.Name }}</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="number" step="0.01" class="form-control" ng-model="newProduct.Weight" name="weight" id="weight" placeholder="Waga" />
+                </div>
+                <div class="col-md-2">
+                    <a ng-click="addProduct()" class="btn btn-primary">Dodaj produkt</a>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Dodaj przepis</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <ul>
+            <li ng-repeat="addedProduct in addedProducts">{{ addedProduct.Name }} - {{ addedProduct.Price }}zł za {{ addedProduct.Weight }}g</li>
+        </ul>
+    </div>
+</div>
