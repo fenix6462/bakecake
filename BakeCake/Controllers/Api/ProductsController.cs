@@ -23,9 +23,9 @@ namespace BakeCake.Controllers.API
         }
 
         // GET /api/products/1
-        public Product GetProduct(int id)
+        public Product GetProduct(string name)
         {
-            var product = _context.Products.SingleOrDefault(r => r.Id == id);
+            var product = _context.Products.SingleOrDefault(r => r.Name == name);
             if (product == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -44,9 +44,9 @@ namespace BakeCake.Controllers.API
 
         // DELETE /api/products/1
         [HttpDelete]
-        public void DeleteProduct(int id)
+        public void DeleteProduct(string name)
         {
-            var productInDb = _context.Products.SingleOrDefault(r => r.Id == id);
+            var productInDb = _context.Products.SingleOrDefault(r => r.Name == name);
             if (productInDb == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -57,9 +57,9 @@ namespace BakeCake.Controllers.API
 
         // PUT /api/products/1
         [HttpPut]
-        public Product EditProduct(int id, Product product)
+        public Product EditProduct(string name, Product product)
         {
-            var productInDb = _context.Products.SingleOrDefault(r => r.Id == id);
+            var productInDb = _context.Products.SingleOrDefault(r => r.Name == name);
 
             if (productInDb == null)
             {

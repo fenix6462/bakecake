@@ -33,21 +33,22 @@
         }, function () {
             $ngBootbox.alert('Wystąpił błąd podczas pobierania listy produktów');
         })
-
-        $scope.getProductById = function (id) {
+         
+        $scope.getProductByName = function (name) {
             return $scope.products.find(function (product) {
-                return product.Id == id;
+                return product.Name === name;
             })
         }
 
         $scope.addProduct = function () {
             var element = {};
-            element.Product = $scope.getProductById($scope.newProduct.Id);
+            var product = $scope.getProductByName($scope.newProduct.Name);
             element.Weight = $scope.newProduct.Weight;
-            element.newPrice = element.Product.Price * element.Weight / element.Product.Weight;
+            element.Name = $scope.newProduct.Name;
+            element.newPrice = product.Price * element.Weight / product.Weight;
             $scope.recipe.RecipeProducts.push(element);
             $scope.newProduct.Weight = 0;
-            $scope.newProduct.Id = null;
+            $scope.newProduct.Name = null;
         }
 
     }

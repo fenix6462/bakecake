@@ -1,10 +1,12 @@
 ﻿using BakeCake.Models;
+using BakeCake.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using static BakeCake.ViewModels.CreateRecipeViewModel;
 
 namespace BakeCake.Controllers.API
 {
@@ -36,19 +38,28 @@ namespace BakeCake.Controllers.API
 
         // POST /api/recipes
         [HttpPost]
-        public Recipe CreateRecipe(Recipe recipe)
+        public Recipe CreateRecipe(CreateRecipeViewModel recipe)
         {
-            //foreach(RecipeProducts element in recipe.Products)
-            //{
-            //    var productId = element.Product.Id;
-            //    if (_context.Products.SingleOrDefault(p => p.Id == productId) == null)
-            //    {
-            //        recipe.Products.Remove(element);
-            //    }
-            //}
-            _context.Recipes.Add(recipe);
+            Recipe entity = new Recipe();
+            entity.Name = recipe.Name;
+            entity.Description = recipe.Description;
+
+            foreach(RecipeProductViewModel recipeProduct in recipe.RecipeProducts)
+            {
+                Product product = _context.Products.SingleOrDefault(p => p.Name == recipeProduct.Name);
+                if(product != null)
+                {
+                    entity.RecipeProducts.Add(new RecipeProducts
+                    {
+                        Product = product,
+                        Weight = recipeProduct.Weight
+                    });
+                }
+            }
+
+            _context.Recipes.Add(entity);
             _context.SaveChanges();
-            return recipe;
+            return entity;
         }
 
         // DELETE /api/recipes/1
@@ -77,7 +88,7 @@ namespace BakeCake.Controllers.API
 
             recipeInDb.Name = recipe.Name;
             recipeInDb.Description = recipe.Description;
-            recipeInDb.Products = recipe.Products;
+            recipeInDb.RecipeProducts = recipe.RecipeProducts;
 
             _context.SaveChanges();
         }
