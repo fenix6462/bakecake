@@ -1,4 +1,5 @@
 ﻿using BakeCake.Models;
+using BakeCake.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,11 +37,28 @@ namespace BakeCake.Controllers.API
 
         // POST /api/recipes
         [HttpPost]
-        public Recipe CreateRecipe(Recipe recipe)
+        public Recipe CreateRecipe(CreateRecipeViewModel recipe)
         {
-            _context.Recipes.Add(recipe);
+            Recipe entity = new Recipe();
+            entity.Name = recipe.Name;
+            entity.Description = recipe.Name;
+
+            foreach (RecipeProductViewModel recipeProduct in recipe.RecipeProducts)
+            {
+                Product product = _context.Products.FirstOrDefault(x => x.Name == recipeProduct.Name);
+                if (product != null)
+                {
+                    entity.RecipeProducts.Add(new RecipeProducts
+                    {
+                        Product = product,
+                        Weight = recipeProduct.Weight
+                    });
+                }
+            }
+
+            _context.Recipes.Add(entity);
             _context.SaveChanges();
-            return recipe;
+            return entity;
         }
 
         // DELETE /api/recipes/1

@@ -16,9 +16,9 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-6">
-                    <select class="form-control" ng-model="newProduct.Id">
+                    <select class="form-control" ng-model="newProduct.Name">
                         <option value="">Wybierz produkt</option>
-                        <option ng-repeat="product in products" value="{{ product.Id }}">{{ product.Name }}</option>
+                        <option ng-repeat="product in products" value="{{ product.Name }}">{{ product.Name }}</option>
                     </select>
                 </div>
                 <div class="col-md-4">
