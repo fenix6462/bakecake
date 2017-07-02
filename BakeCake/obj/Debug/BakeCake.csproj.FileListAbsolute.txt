@@ -122,3 +122,4 @@ D:\Projects\BakeCake\BakeCake\bin\System.Net.Http.Formatting.xml
 D:\Projects\BakeCake\BakeCake\bin\System.Web.Http.xml
 D:\Projects\BakeCake\BakeCake\bin\System.Web.Http.WebHost.xml
 D:\Projects\BakeCake\BakeCake\obj\Debug\BakeCake.Migrations.deleteProductFromRecipe.resources
+D:\Projects\BakeCake\BakeCake\obj\Debug\BakeCake.Migrations.changeRecipeMOdel.resources

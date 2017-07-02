@@ -38,6 +38,14 @@ namespace BakeCake.Controllers.API
         [HttpPost]
         public Recipe CreateRecipe(Recipe recipe)
         {
+            //foreach(RecipeProducts element in recipe.Products)
+            //{
+            //    var productId = element.Product.Id;
+            //    if (_context.Products.SingleOrDefault(p => p.Id == productId) == null)
+            //    {
+            //        recipe.Products.Remove(element);
+            //    }
+            //}
             _context.Recipes.Add(recipe);
             _context.SaveChanges();
             return recipe;
@@ -69,7 +77,7 @@ namespace BakeCake.Controllers.API
 
             recipeInDb.Name = recipe.Name;
             recipeInDb.Description = recipe.Description;
-            recipeInDb.RecipeProducts = recipe.RecipeProducts;
+            recipeInDb.Products = recipe.Products;
 
             _context.SaveChanges();
         }
