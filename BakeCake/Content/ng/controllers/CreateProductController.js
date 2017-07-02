@@ -2,20 +2,27 @@
     '$scope',
     '$location',
     '$http',
+    '$ngBootbox',
     function (
         $scope,
         $location,
-        $http
+        $http,
+        $ngBootbox
     ) {
 
 
         $scope.product = {};
+        $scope.isCreatingInProgress = false;
 
         $scope.createProduct = function () {
+            $scope.isCreatingInProgress = true;
             $http.post('/api/products', $scope.product).then(function (response) {
-                alert('Produkt został dodany');
+                $scope.isCreatingInProgress = false;
+                $ngBootbox.alert('Produkt został dodany');
+                $location.path("/products");
             }, function () {
-                alert('Produkt nie został dodany');
+                $scope.isCreatingInProgress = false;
+                $ngBootbox.alert('Wystąpił błąd podczas dodawania produktu');
             })
         }
 

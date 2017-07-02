@@ -1,17 +1,34 @@
 ﻿<div class="row">
     <div class="col-md-12">
         <h1>Produkty</h1>
-        <table class="table hover">
-            <tr>
-                <th>Nazwa</th>
-                <th>Cena</th>
-                <th>Waga</th>
-            </tr>
-            <tr ng-repeat="product in products">
-                <td>{{ product.Name }}</td>
-                <td>{{ product.Price }}</td>
-                <td>{{ product.Weight }}</td>
-            </tr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Cena</th>
+                    <th>Waga</th>
+                    <th></th>
+                    <th style="width: 50px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in products">
+                    <td><input type="text" class="transparent" ng-class="{ 'error': product.Name.length <= 0 }" placeholder="Podaj nazwę produktu" ng-disabled="product.isSavingInProgress" ng-model="product.Name" ng-model-options="{ updateOn: 'blur' }" ng-change="product.Name.length > 0 && save(product)" /></td>
+                    <td><input type="number" step="0.01" class="transparent" ng-class="{ 'error': !product.Price }" placeholder="Podaj cenę produktu" ng-disabled="product.isSavingInProgress" ng-model="product.Price" ng-model-options="{ updateOn: 'blur' }" ng-change="product.Price && save(product)" /></td>
+                    <td><input type="number" class="transparent" ng-class="{ 'error': !product.Weight }" placeholder="Podaj wagę produktu" ng-disabled="product.isSavingInProgress" ng-model="product.Weight" ng-model-options="{ updateOn: 'blur' }" ng-change="product.Weight && save(product)" /></td>
+                    <td class="text-right">
+                        <a ng-bootbox-confirm="Na pewno chcesz usunąć ten produkt?" ng-bootbox-confirm-action="deleteProduct(product)" ng-hide="product.isDeletingInProgress" class="btn btn-danger btn-sm">Usuń</a>
+                        <a disabled="disabled" ng-show="product.isDeletingInProgress" class="btn btn-danger btn-sm">Usuń</a>
+                    </td>
+                    <th><div class="loader small" ng-show="product.isSavingInProgress || product.isDeletingInProgress"></div></th>
+                </tr>
+            </tbody>
+            <tfoot ng-show="!products.length > 0 || isProductsFetchInProgress">
+                <tr>
+                    <td colspan="4" ng-show="!isProductsFetchInProgress && !products.length > 0" class="text-center">Brak produktów</td>
+                    <td colspan="4" ng-show="isProductsFetchInProgress" class="text-center"><div class="loader small"></div></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>

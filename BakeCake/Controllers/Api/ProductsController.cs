@@ -57,7 +57,7 @@ namespace BakeCake.Controllers.API
 
         // PUT /api/products/1
         [HttpPut]
-        public void EditProduct(int id, Product product)
+        public Product EditProduct(int id, Product product)
         {
             var productInDb = _context.Products.SingleOrDefault(r => r.Id == id);
 
@@ -71,6 +71,8 @@ namespace BakeCake.Controllers.API
             productInDb.Weight = product.Weight;
 
             _context.SaveChanges();
+
+            return product;
         }
     }
 }

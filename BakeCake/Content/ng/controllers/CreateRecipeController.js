@@ -2,23 +2,28 @@
     '$scope',
     '$location',
     '$http',
+    '$ngBootbox',
     function (
         $scope,
         $location,
-        $http
+        $http,
+        $ngBootbox
     ) {
 
 
-        $scope.recipe = {};
+        $scope.recipe = {
+            RecipeProducts: []
+        };
         $scope.products = [];
         $scope.addedProducts = [];
         $scope.newProduct = {};
 
         $scope.createRecipe = function () {
             $http.post('/api/recipes', $scope.recipe).then(function (response) {
-                alert('Przepis został dodany');
+                $ngBootbox.alert('Przepis został dodany');
+                $location.path("/recipes");
             }, function () {
-                alert('Przepis nie został dodany');
+                $ngBootbox.alert('Wystąpił błąd podczas dodawania przepisu');
             })
         }
 
@@ -26,8 +31,8 @@
         $http.get('/api/products').then(function (response) {
             $scope.products = response.data;
         }, function () {
-            alert('error');
-            })
+            $ngBootbox.alert('Wystąpił błąd podczas pobierania listy produktów');
+        })
 
         $scope.getProductById = function (id) {
             return $scope.products.find(function (product) {
@@ -36,8 +41,13 @@
         }
 
         $scope.addProduct = function () {
-            var product = $scope.getProductById($scope.newProduct.Id);
-            debugger;
+            var element = {};
+            element.Product = $scope.getProductById($scope.newProduct.Id);
+            element.Weight = $scope.newProduct.Weight;
+            element.newPrice = element.Product.Price * element.Weight / element.Product.Weight;
+            $scope.recipe.RecipeProducts.push(element);
+            $scope.newProduct.Weight = 0;
+            $scope.newProduct.Id = null;
         }
 
     }

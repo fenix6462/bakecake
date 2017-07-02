@@ -69,7 +69,6 @@ namespace BakeCake.Controllers.API
 
             recipeInDb.Name = recipe.Name;
             recipeInDb.Description = recipe.Description;
-            recipeInDb.Products = recipe.Products;
             recipeInDb.RecipeProducts = recipe.RecipeProducts;
 
             _context.SaveChanges();

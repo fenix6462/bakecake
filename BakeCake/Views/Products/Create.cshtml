@@ -1,22 +1,24 @@
 ﻿<div class="row">
     <div class="col-md-12">
-        Dodaj produkt
+        <h1>
+            Dodaj produkt
+        </h1>
     </div>
-    <div class="col-md-12">
-        <form name="createProductForm" ng-submit="createProduct()">
+    <div class="col-md-4">
+        <form name="createProductForm" novalidate ng-submit="createProductForm.$valid && createProduct()">
             <div class="form-group">
-                <label for="name">Podaj nazwę produktu</label>
-                <input type="text" class="form-control" ng-model="product.Name" name="name" id="name" placeholder="Podaj nazwę produktu" />
+                <label for="name" ng-class="{ 'error': (createProductForm.name.$touched || createProductForm.$submitted) && createProductForm.name.$error.required }">Podaj nazwę produktu <span ng-show="(createProductForm.name.$touched || createProductForm.$submitted) && createProductForm.name.$error.required">(To pole jest wymagane)</span></label>
+                <input type="text" class="form-control" ng-class="{ 'error': (createProductForm.name.$touched || createProductForm.$submitted) && createProductForm.name.$error.required }" ng-model="product.Name" name="name" id="name" placeholder="Podaj nazwę produktu" required />
             </div>
             <div class="form-group">
-                <label for="name">Podaj cenę produktu</label>
-                <input type="number" step="0.01" class="form-control" ng-model="product.Price" name="price" id="price" placeholder="Podaj cenę produktu" />
+                <label for="name" ng-class="{ 'error': (createProductForm.price.$touched || createProductForm.$submitted) && createProductForm.price.$error.required }">Podaj cenę produktu <span ng-show="(createProductForm.price.$touched || createProductForm.$submitted) && createProductForm.price.$error.required">(To pole jest wymagane)</span></label>
+                <input type="number" step="0.01" class="form-control" ng-class="{ 'error': (createProductForm.price.$touched || createProductForm.$submitted) && createProductForm.price.$error.required }" ng-model="product.Price" name="price" id="price" placeholder="Podaj cenę produktu" required />
             </div>
             <div class="form-group">
-                <label for="name">Podaj wagę produktu</label>
-                <input type="number" class="form-control" ng-model="product.Weight" name="weight" id="weight" placeholder="Podaj wagę produktu" />
+                <label for="name" ng-class="{ 'error': (createProductForm.weight.$touched || createProductForm.$submitted) && createProductForm.weight.$error.required }">Podaj wagę produktu <span ng-show="(createProductForm.weight.$touched || createProductForm.$submitted) && createProductForm.weight.$error.required">(To pole jest wymagane)</span></label>
+                <input type="number" class="form-control" ng-class="{ 'error': (createProductForm.weight.$touched || createProductForm.$submitted) && createProductForm.weight.$error.required }" ng-model="product.Weight" name="weight" id="weight" placeholder="Podaj wagę produktu" required />
             </div>
-            <button class="btn btn-primary" type="submit">Dodaj produkt</button>
+            <button class="btn btn-primary" type="submit" ng-disabled="isCreatingInProgress">Dodaj produkt</button>
         </form>
     </div>
 </div>

@@ -1,8 +1,10 @@
 ﻿<div class="row">
     <div class="col-md-12">
-        Dodaj przepis
+        <h1>
+            Dodaj przepis
+        </h1>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         <form name="createRecipeForm" ng-submit="createRecipe()">
             <div class="form-group">
                 <label for="name">Podaj nazwę przepisu</label>
@@ -29,9 +31,9 @@
             <button class="btn btn-primary" type="submit">Dodaj przepis</button>
         </form>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-7">
         <ul>
-            <li ng-repeat="addedProduct in addedProducts">{{ addedProduct.Name }} - {{ addedProduct.Price }}zł za {{ addedProduct.Weight }}g</li>
+            <li ng-repeat="element in recipe.RecipeProducts">{{ element.Product.Name }} - {{ element.newPrice }}zł za {{ element.Weight }}g</li>
         </ul>
     </div>
 </div>

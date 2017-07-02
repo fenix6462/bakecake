@@ -1,15 +1,30 @@
 ﻿<div class="row">
     <div class="col-md-12">
         <h1>Przepisy</h1>
-        <table class="table hover">
-            <tr>
-                <th>Nazwa</th>
-                <th>Opis</th>
-            </tr>
-            <tr ng-repeat="recipe in recipes">
-                <td>{{ recipe.Name }}</td>
-                <td>{{ recipe.Description }}</td>
-            </tr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th></th>
+                    <th style="width: 50px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="recipe in recipes">
+                    <td>{{ recipe.Name }}</td>
+                    <td class="text-right">
+                        <a ng-bootbox-confirm="Na pewno chcesz usunąć ten przepis?" ng-bootbox-confirm-action="deleteRecipe(recipe)" class="btn btn-danger btn-sm" ng-hide="recipe.isDeletingInProgress">Usuń</a>
+                        <a disabled="disabled" class="btn btn-danger btn-sm" ng-show="recipe.isDeletingInProgress">Usuń</a>
+                    </td>
+                    <td><div class="loader small" ng-show="recipe.isDeletingInProgress"></div></td>
+                </tr>
+            </tbody>
+            <tfoot ng-show="!recipes.length > 0 || isRecipesFetchInProgress">
+                <tr>
+                    <td colspan="4" ng-show="!isRecipesFetchInProgress && !recipes.length > 0" class="text-center">Brak przepisów</td>
+                    <td colspan="4" ng-show="isRecipesFetchInProgress" class="text-center"><div class="loader small"></div></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>

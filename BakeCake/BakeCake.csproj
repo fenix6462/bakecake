@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201706302250300_changemodel.Designer.cs">
       <DependentUpon>201706302250300_changemodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707012108293_deleteProductFromRecipe.cs" />
+    <Compile Include="Migrations\201707012108293_deleteProductFromRecipe.Designer.cs">
+      <DependentUpon>201707012108293_deleteProductFromRecipe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -243,11 +247,14 @@
     <Content Include="Content\js\angular-route.min.js" />
     <Content Include="Content\js\angular.js" />
     <Content Include="Content\js\angular.min.js" />
+    <Content Include="Content\js\bootbox.min.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\ngBootbox.js" />
+    <Content Include="Content\js\ngBootbox.min.js" />
     <Content Include="Content\js\ui-bootstrap-tpls-2.5.0.min.js" />
     <Content Include="Content\ng\app.js" />
     <Content Include="Content\ng\controllers\AppController.js" />
@@ -331,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706302250300_changemodel.resx">
       <DependentUpon>201706302250300_changemodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707012108293_deleteProductFromRecipe.resx">
+      <DependentUpon>201707012108293_deleteProductFromRecipe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
