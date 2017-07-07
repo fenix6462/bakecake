@@ -51,6 +51,13 @@ namespace BakeCake.Controllers.API
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
+            foreach (RecipeProducts product in _context.RecipeProducts)
+            {
+                if (product.Product.Name == name)
+                {
+                    _context.RecipeProducts.Remove(product);
+                }
+            }
             _context.Products.Remove(productInDb);
             _context.SaveChanges();
         }
